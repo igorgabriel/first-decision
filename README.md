@@ -3,7 +3,7 @@
 Este repositório contém o projeto **First-Decision**, composto por:
 
 * **rh-api**: API em Spring Boot (Java 17) utilizando PostgreSQL e Docker.
-* **frontend** (rh-web): aplicação Angular (v15+) servida em container Docker com `ng serve`.
+* **rh-web** (frontend): aplicação Angular (v15+) servida em container Docker com `ng serve`.
 
 ---
 
