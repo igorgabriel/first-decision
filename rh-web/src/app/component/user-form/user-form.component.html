@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <h2>{{ id ? 'Editar Usuário' : 'Cadastrar Usuário' }}</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="mb-3">
+      <label class="form-label">Nome</label>
+      <input class="form-control" formControlName="name" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input class="form-control" formControlName="email" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Senha</label>
+      <input type="password" class="form-control" formControlName="password" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Confirmar Senha</label>
+      <input type="password" class="form-control" formControlName="passwordConfirmation" />
+    </div>
+     <div *ngIf="form.errors?.['passwordsMismatch'] && form.get('passwordConfirmation')?.touched" class="alert alert-danger">
+      As senhas não coincidem.
+    </div>
+    <button class="btn btn-success" type="submit" [disabled]="form.invalid">
+      {{ id ? 'Atualizar' : 'Cadastrar' }}
+    </button>
+    <button class="btn btn-secondary ms-2" routerLink="/users">Cancelar</button>
+  </form>
+</div>

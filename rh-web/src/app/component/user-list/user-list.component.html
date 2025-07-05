@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <h2>Usuários</h2>
+  <button class="btn btn-primary mb-3" (click)="add()">Novo Usuário</button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of users">
+        <td>{{u.id}}</td>
+        <td>{{u.name}}</td>
+        <td>{{u.email}}</td>
+        <td>
+          <button class="btn btn-sm btn-info me-2" (click)="edit(u.id!)">Editar</button>
+          <button class="btn btn-sm btn-danger" (click)="delete(u.id)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

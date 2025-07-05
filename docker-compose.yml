@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: rh_db
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - pgdata:/var/lib/postgresql/data 
+ 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+
+  app:
+    build:
+      context: ./rh-api
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports: 
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/rh_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 123456
+  
+  web:
+    build:
+      context: ./rh-web
+      dockerfile: Dockerfile 
+    container_name: rh-web
+    depends_on:
+      - app
+    ports:
+      - "4200:4200"    
+
+volumes:
+  pgdata:
